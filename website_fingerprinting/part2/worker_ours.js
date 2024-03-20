@@ -20,7 +20,7 @@ const intSizeBytes = 4; // Assuming each integer occupies 4 bytes (32 bits)
 const N = cacheSizeBytes / (16 * intSizeBytes);
 
 function record() {
-  const num_intervals = 200;
+  const num_intervals = 1000;
   // Interval length P in milliseconds
   const P = TRACE_LENGTH / num_intervals; // Assign an appropriate value based on your requirements
 
@@ -31,7 +31,7 @@ function record() {
   console.log(TRACE_LENGTH);
 
   // Initialize the buffer to traverse
-  // const buffer = new Array(N).fill(-1);
+  const buffer = new Array(N).fill(-1);
 
   // Save start timestamp
   start = performance.now();
@@ -46,7 +46,7 @@ function record() {
     intervalEnd = now + P;
     while(now <= intervalEnd){
       for (let i = 0; i < N; i++) {
-        // let temp = buffer[i];
+        let temp = buffer[i];
       }
       accessCount++;
       now = performance.now();

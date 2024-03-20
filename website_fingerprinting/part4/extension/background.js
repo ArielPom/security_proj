@@ -150,11 +150,13 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     loading = true;
 
     for (let i = 0; i < 20; i++) {
+      console.log(`ping ${i}`);
       randomPing();
     }
 
     for (let i = 0; i < loadTime / 10; i++) {
       setTimeout(activityBurst, Math.random() * loadTime);
+      console.log(`ping ${i}`);
     }
   } else if (changeInfo.status === "complete") {
     loading = false;

@@ -1,27 +1,49 @@
 import json
 import numpy as np
 
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 
 def eval():
-    y_pred_full, y_test_full = [], []
+    with open("traces.json", "r") as f:
+        # Load contents from file as JSON data
+        data = json.loads(f.read())
 
-    # Re-train 10 times in order to reduce effects of randomness
-    for i in range(10):
-        ### TODO: Exercise 4-1
-        ### 1. Load data from traces file
-        ### 2. Split data into X_train, X_test, y_train, y_test with train_test_split
-        ### 3. Train classifier with X_train and y_train
-        ### 4. Use classifier to make predictions on X_test. Save the result to a variable called y_pred
+    # Convert data to numpy arrays for easier handling
+    X = np.array(data["traces"])
+    y = np.array(data["labels"])
 
-        # Do not modify the next two lines
-        y_test_full.extend(y_test)
-        y_pred_full.extend(y_pred)
+    # Initialize classifiers to evaluate
+    classifiers = {
+        "Random Forest": RandomForestClassifier(),
+        "SVM": SVC(),
+        "kNN": KNeighborsClassifier()
+    }
 
-    ### TODO: Exercise 4-1 (continued)
-    ### 5. Print classification report using y_test_full and y_pred_full
+    for name, clf in classifiers.items():
+        print(f"Evaluating {name}...")
+        y_pred_full, y_test_full = [], []
+
+        # Re-train 10 times in order to reduce effects of randomness
+        for i in range(10):
+            # Split data into training and testing sets
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+            # Train classifier
+            clf.fit(X_train, y_train)
+
+            # Make predictions on the testing set
+            y_pred = clf.predict(X_test)
+
+            # Collect predictions and actual labels for overall evaluation
+            y_test_full.extend(y_test)
+            y_pred_full.extend(y_pred)
+
+        # Print classification report for the current classifier
+        print(classification_report(y_test_full, y_pred_full))
 
 if __name__ == "__main__":
     eval()

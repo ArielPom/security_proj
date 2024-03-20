@@ -1,0 +1,36 @@
+Evaluating Random Forest...
+                          precision    recall  f1-score   support
+
+   https://www.baidu.com       0.97      0.97      0.97        33
+https://www.facebook.com       0.95      1.00      0.97        37
+  https://www.google.com       1.00      0.95      0.97        40
+ https://www.youtube.com       1.00      1.00      1.00        50
+
+                accuracy                           0.98       160
+               macro avg       0.98      0.98      0.98       160
+            weighted avg       0.98      0.98      0.98       160
+
+Evaluating SVM...
+                          precision    recall  f1-score   support
+
+   https://www.baidu.com       0.94      1.00      0.97        33
+https://www.facebook.com       0.95      0.95      0.95        39
+  https://www.google.com       1.00      0.96      0.98        45
+ https://www.youtube.com       1.00      1.00      1.00        43
+
+                accuracy                           0.97       160
+               macro avg       0.97      0.98      0.97       160
+            weighted avg       0.98      0.97      0.98       160
+
+Evaluating kNN...
+                          precision    recall  f1-score   support
+
+   https://www.baidu.com       0.96      1.00      0.98        49
+https://www.facebook.com       0.94      0.94      0.94        35
+  https://www.google.com       1.00      1.00      1.00        31
+ https://www.youtube.com       1.00      0.96      0.98        45
+
+                accuracy                           0.97       160
+               macro avg       0.98      0.97      0.98       160
+            weighted avg       0.98      0.97      0.97       160
+
